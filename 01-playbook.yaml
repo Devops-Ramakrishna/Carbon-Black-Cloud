@@ -1,0 +1,6 @@
+- name: Carbon Black Cloud
+  hosts: localhost.localdomain
+  become: yes
+  tasks:
+  - name: ping the server
+    ansible.builtin.ping: 
