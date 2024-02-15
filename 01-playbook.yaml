@@ -18,12 +18,12 @@
 
   - name: extract carbon black cloud tar file
     ansible.builtin.unarchive:
-      src: /root/cb-psc-install/cb-psc-sensor-rhel-2.13.2.1054252.tar
+      src: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
       dest: /root/cb-psc-install
       remote_src: yes
 
   - name: Run a script with arguments (using 'cmd' parameter)
-    ansible.builtin.shell: sudo sh /root/cb-psc-install/install.sh
+    ansible.builtin.shell: sudo sh /root/cb-psc-install/install.sh 25LDH52OWR4SWB7YRJH
 
   - name: start and enable cbagentd
     ansible.builtin.service:
