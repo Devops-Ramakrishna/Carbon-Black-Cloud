@@ -23,12 +23,10 @@
       remote_src: yes
 
   - name: Run a script with arguments (using 'cmd' parameter)
-    ansible.builtin.shell: sudo sh /root/install.sh
+    ansible.builtin.shell: sudo sh /root/cb-psc-install/install.sh
 
   - name: start and enable cbagentd
     ansible.builtin.service:
       name: cbagentd
       state: restarted
       enabled: yes
-
-      
