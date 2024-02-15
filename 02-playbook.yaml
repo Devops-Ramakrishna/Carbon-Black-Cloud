@@ -22,8 +22,9 @@
       dest: /root/cb-psc-install
       remote_src: yes
 
-      #- name: Uninstall the cbagent if exists
-      #ansible.builtin.shell: rpm -e cb-psc-sensor
+  - name: Uninstall the cbagent if exists
+    ansible.builtin.shell: rpm -e cb-psc-sensor
+    ignore_errors: true
 
   - name: Run a script with ansible shell
     ansible.builtin.shell: sh /root/cb-psc-install/install.sh 25LDH52OWR4SWB7YRJH
