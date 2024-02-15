@@ -10,17 +10,17 @@
       src: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
       dest: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
 
-  - name: extract carbon black cloud tar file
-    ansible.builtin.unarchive:
-      src: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
-      dest: /root
-      remote_src: yes
-
   - name: Create a directory if it does not exist
     ansible.builtin.file:
       path: /root/cb-psc-install
       state: directory
       mode: '0755'
+
+  - name: extract carbon black cloud tar file
+    ansible.builtin.unarchive:
+      src: /root/cb-psc-install/cb-psc-sensor-rhel-2.13.2.1054252.tar
+      dest: /root/cb-psc-install
+      remote_src: yes
 
   - name: Run a script with arguments (using 'cmd' parameter)
     ansible.builtin.shell: sudo sh /root/install.sh
@@ -31,4 +31,4 @@
       state: restarted
       enabled: yes
 
-      ansible_python_interpreter=/bin/python
+      
