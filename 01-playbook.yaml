@@ -5,7 +5,7 @@
   - name: ping the server
     ansible.builtin.ping:
 
-  - name: Copy file with owner and permissions
+  - name: Copy the file cb-psc-sensor
     ansible.builtin.copy:
       src: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
       dest: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
@@ -22,7 +22,7 @@
       dest: /root/cb-psc-install
       remote_src: yes
 
-  - name: Run a script with arguments (using 'cmd' parameter)
+  - name: Run a script with ansible shell
     ansible.builtin.shell: sudo sh /root/cb-psc-install/install.sh 25LDH52OWR4SWB7YRJH
 
   - name: start and enable cbagentd
@@ -30,3 +30,8 @@
       name: cbagentd
       state: restarted
       enabled: yes
+  
+  - name: Check directories
+      stat:
+        path: '/opt/carbonblack/psc/bin'
+      register: directory_data
