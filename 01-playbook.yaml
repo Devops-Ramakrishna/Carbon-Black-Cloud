@@ -23,11 +23,12 @@
       mode: '0755'
 
   - name: Run a script with arguments (using 'cmd' parameter)
-    ansible.builtin.script:
-      cmd: sudo sh /root/install.sh 25LDH52OWR4SWB7YRJH
+    ansible.builtin.shell: sudo sh /root/install.sh
 
   - name: start and enable cbagentd
     ansible.builtin.service:
       name: cbagentd
       state: restarted
       enabled: yes
+
+      ansible_python_interpreter=/bin/python
