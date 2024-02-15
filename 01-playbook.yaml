@@ -1,5 +1,5 @@
 - name: Carbon Black Cloud
-  hosts: localhost.localdomain
+  hosts: all
   become: yes
   tasks:
   - name: ping the server
@@ -23,7 +23,7 @@
       remote_src: yes
 
   - name: Run a script with ansible shell
-    ansible.builtin.shell: sudo sh /root/cb-psc-install/install.sh 25LDH52OWR4SWB7YRJH
+    ansible.builtin.shell: sh /root/cb-psc-install/install.sh 25LDH52OWR4SWB7YRJH
 
   - name: start and enable cbagentd
     ansible.builtin.service:
@@ -31,7 +31,7 @@
       state: restarted
       enabled: yes
   
-  - name: Check directories
+  - name: Checking if directory is exist or not
       stat:
         path: '/opt/carbonblack/psc/bin'
       register: directory_data
