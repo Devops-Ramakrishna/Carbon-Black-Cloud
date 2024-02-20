@@ -1,0 +1,3 @@
+- name: Uninstall the cbagent if exists
+    ansible.builtin.shell: rpm -e cb-psc-sensor
+    ignore_errors: true
