@@ -5,7 +5,7 @@
   - name: ping the server
     ansible.builtin.ping:
 
-  - name: Copy the file cb-psc-sensor
+  - name: Copy file with owner and permissions
     ansible.builtin.copy:
       src: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
       dest: /root/cb-psc-sensor-rhel-2.13.2.1054252.tar
@@ -22,27 +22,15 @@
       dest: /root/cb-psc-install
       remote_src: yes
 
+  - name: Uninstall the cbagent if exists
+    ansible.builtin.shell: rpm -e cb-psc-sensor
+    ignore_errors: true
+
   - name: Run a script with ansible shell
     ansible.builtin.shell: sh /root/cb-psc-install/install.sh 25LDH52OWR4SWB7YRJH
-    when: user_count.stdout == "0"
 
   - name: start and enable cbagentd
     ansible.builtin.service:
       name: cbagentd
       state: restarted
       enabled: yes
-  
-  - name: check if cbagent is installed
-    ansible.builtin.shell: rpm -qa | grep cb-psc-sensor
-      register: cb-psc-sensor_installed
-      ignore_errors: True
-      check_mode: False
-      changed_when: False
-
-  - name: print
-    debug:
-      msg: "cb-psc-sensor is installed"
-    when: cb-psc-sensor_installed.rc == 0
-
-  # Uninstall the cbc
-  # rpm -e cb-psc-sensor
