@@ -1,0 +1,10 @@
+- name: Carbon Black Cloud
+  hosts: all
+  become: yes
+  tasks:
+  - name: ping the server
+    ansible.builtin.ping:
+  
+  - name: Uninstall the cbagent if exists
+    ansible.builtin.shell: rpm -e cb-psc-sensor
+    ignore_errors: true

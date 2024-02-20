@@ -45,4 +45,4 @@
     when: cb-psc-sensor_installed.rc == 0
 
   # Uninstall the cbc
-  rpm -e cb-psc-sensor
+  # rpm -e cb-psc-sensor
