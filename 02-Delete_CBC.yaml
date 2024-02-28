@@ -11,3 +11,9 @@
 
   # Uninstall the cbc
   # rpm -e cb-psc-sensor
+
+  # How to create tar file
+  # tar -cvf /root/my_ansible.tar .
+
+  # How to copy tat file output to /tmp
+  # tar -xvf my_ansible.tar -C /tmp
